@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+
 @Component({
-  selector: 'app-forms',
+  selector: 'app-login',
   standalone: true,
   imports: [NavbarComponent],
-  templateUrl: './forms.component.html',
-  styleUrl: './forms.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class FormsComponent {
+export class LoginComponent {
 
 }

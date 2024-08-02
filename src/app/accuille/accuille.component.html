@@ -1,37 +1,5 @@
-<!-- component -->
-<nav class="shadow-lg border-t-4 border-blue-500 ">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex justify-between">
-        <div class="flex space-x-7">
-          <div>
-            <a href="#" class="flex items-center py-4 px-2">
-              <img src="#" alt="Logo" class="rounded-full h-8 w-8 mr-2" /><span class="font-semibold text-gray-500 text-lg">TubeNich</span>
-              </a>
-          </div>
-        </div>
-        <div class="hidden md:flex items-center space-x-1">
-          <a href="" class="py-4 px-2 text-blue-500 font-semibold">SignUp</a>
-          <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Login</a>
-          
-        </div>
-        <div class="mr-10 flex md:hidden">
-          <button class="inline-flex items-center justify-center p-2 rounded-md text-dark">
-            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-              <path d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z">
-              </path>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 md:hidden">
-        <a href="" class="cursor-pointer  text-blue-500 block px-3 py-2 hover:text-blue-500 rounded-md text-base font-medium transition duration-300">Home </a>
-        <a href="" class="cursor-pointer text-white block px-3 py-2 hover:text-blue-500 rounded-md text-base font-medium transition duration-300">Projects</a>
-        <a href="" class="cursor-pointer bg-purple-600 text-white block px-3 py-2 hover:bg-purple-800 rounded-md text-base font-medium transition duration-300">Donate</a>
-        </div>
-    </div>
-  </nav>
+
+<app-navbar></app-navbar>
 <!--"""""""""""""""""""""""Content"""""""""""""""""""""""-->
 
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 mt-30">
@@ -50,7 +18,7 @@
   </div>
 <!--"""""""""""""""Content"""""""""""""""""-->
 <div class="text-center">
-<button class="btn btn-active btn-secondary" (click)="navigateToForms()">Commencez Maintenant</button>
+<button class="btn btn-active btn-secondary"><a href="/forms">Commencez Maintenant</a></button>
 </div>
 
 <!--'''''''''''''''''Button'''''''''''''-->
