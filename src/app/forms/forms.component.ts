@@ -1,33 +1,34 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FormGroup, FormControl, Validator, FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-forms',
   standalone: true,
-  imports: [NavbarComponent, FormsModule],
+  imports: [NavbarComponent, ReactiveFormsModule],
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.css'
 })
 export class FormsComponent {
     myForm!: FormGroup
 
-    constructor(){
+    constructor(private route:Router){
       this.myForm = new FormGroup({
-          username: new FormControl(''),
-          email: new FormControl(''),
-          password1 : new FormControl(''),
-          password: new FormControl(''),
-          choise: new FormControl(''),
-          checkbox : new FormControl('')
+          username: new FormControl('', Validators.required),
+          email: new FormControl('', [Validators.email, Validators.required]),
+          password1 : new FormControl('', [Validators.required, Validators.minLength(8)]),
+          password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+          choise: new FormControl('', Validators.required),
+          checkbox : new FormControl('', Validators.required)
       });
     }
-    onSubmit(form:NgForm){
-      if(form.valid){
+    onSubmit(){
+      if(this.myForm.valid){
           
         console.log(this.myForm.value)
+        this.route.navigate(['/videos'])
       }
       else{
         console.log('form not valid')

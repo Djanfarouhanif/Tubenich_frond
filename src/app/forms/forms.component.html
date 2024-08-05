@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
     
     <div class="h-screen flex justify-center items-center">
-        <form class="max-w-3xl mx-auto p-10  rounded-xl bg-black bg-opacity-50" #myForm ="ngForm" (ngSubmit) = "onSubmit(myForm)">
+        <form class="max-w-3xl mx-auto p-10  rounded-xl bg-black bg-opacity-50" [formGroup]="myForm" (ngSubmit) = "onSubmit()">
             <div class="mb-5 ">
                 <label for="username" class="block mb-2 text-sm font-medium text-slate-50 dark:text-white">Your email</label>
                 <input type="username" id="username" formControlName="username" class="shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Username" required />
