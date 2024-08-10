@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProfileComponent } from '../profile/profile.component';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-video',
   standalone: true,
@@ -9,5 +9,10 @@ import { ProfileComponent } from '../profile/profile.component';
   styleUrl: './video.component.css'
 })
 export class VideoComponent {
+    constructor(private router:Router){}
 
+    // Fonction pour activer une autre video
+    video(){
+      this.router.navigate(['/home'])
+    }
 }
