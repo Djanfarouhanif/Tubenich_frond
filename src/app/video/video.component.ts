@@ -13,6 +13,6 @@ export class VideoComponent {
 
     // Fonction pour activer une autre video
     video(){
-      this.router.navigate(['/home'])
+      this.router.navigate(['/video'])
     }
 }
