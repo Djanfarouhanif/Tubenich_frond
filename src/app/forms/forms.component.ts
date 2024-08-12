@@ -11,7 +11,8 @@ import { Router } from '@angular/router'
   standalone: true,
   imports: [NavbarComponent, ReactiveFormsModule, HttpClientModule],
   templateUrl: './forms.component.html',
-  styleUrl: './forms.component.css'
+  styleUrl: './forms.component.css',
+  providers: [ApiService]
 })
 export class FormsComponent {
    
