@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http'
 import { ApiService } from '../api.service';
 
 import { Router } from '@angular/router'
@@ -30,36 +30,39 @@ export class FormsComponent {
     }
     //fonction pour la validation du formular une foie clicker
     onSubmit(){
-      if(this.myForm.valid){
+      //verifier si password1 et password son compatible
+      if( this.myForm.get('password1')?.value === this.myForm.get('password')?.value){
+        //en suit verifier que forms est valide ou pas
+        if(this.myForm.valid){
+        //recuper  les valeur envoyer par l'utilisateur
+          const formValut = {
+            'username': this.myForm.get('username')?.value,
+            'email': this.myForm.get('email')?.value,
+            'password': this.myForm.get('password')?.value,
+            'langage': this.myForm.get('choise')?.value
+  
+          };
           
-        console.log(this.myForm.value)
-        this.route.navigate(['/videos'])
+          this.apiservice.postData(formValut).subscribe(
+            response => {
+              console.log(response);
+            },
+            error => {
+              console.log(error);
+            }
+          );
+          
+        }
+        else{
+          console.log('form not valid')
+        };
       }
       else{
-        console.log('form not valid')
+        console.log("password not matching")
       }
+      
     };
 
     //Fonction pour envoyer les donner via l'api
-    send(){
-      const data = {
-        'user': {
-          'username': 'irzzz',
-          'password': 'DDDDDDDDDDDDDDDDD',
-          'email': 'hs@gmail.com',
-          'last_name' : 'tode'
-        },
-        'langage': 'python'
-      }
-      this.apiservice.postData(data).subscribe(
-        response =>{
-          console.log(response);
-        },
-        error =>{
-          console.log(error);
-        }
-      );
-   
-    };
       
 }
