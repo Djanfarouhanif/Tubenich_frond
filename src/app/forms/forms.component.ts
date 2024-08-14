@@ -50,7 +50,27 @@ export class FormsComponent {
           
           this.apiservice.postData(formValut).subscribe(
             response => {
-              console.log(response);
+              //recuper le token et login user et l'envoyer a la page d'accuille
+              const data = {
+                'username': this.myForm.get('username'),
+                'password': this.myForm.get('password')
+              }
+              this.apiservice.loginUser(data).subscribe(
+                response =>{
+                  const access_token = response['access'];
+                  //verifier si la connexion a reussi 
+                  if(access_token){
+                    this.route.navigate(['video']);
+                    localStorage.setItem("access_token", access_token)
+                  }
+                  else{
+                    console.log('User not login');
+                  }
+                },
+                error =>{
+                  console.log(error);
+                }
+              )
             },
             error => {
               console.log(error);

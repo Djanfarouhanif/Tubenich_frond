@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class ApiService {
   private apiUrl =[ 'http://127.0.0.1:8000/register/',
-                    'http://127.0.0.1:8000/login',
+                    'http://127.0.0.1:8000/login/',
                      'http://127.0.0.1:8000/']
   
 
@@ -29,11 +29,13 @@ export class ApiService {
     return this.http.post(this.apiUrl[1], data,{headers})
   }
 //Recuperer les donners 
-  getData(): Observable<any>{
+  getData(token:string): Observable<any>{
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return this.http.get(this.apiUrl[2])
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` //Utilisation du token 
+    }); 
+    
+    return this.http.get(this.apiUrl[2], {headers});
   }
 }
 

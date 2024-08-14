@@ -22,18 +22,25 @@ export class LoginComponent {
       }
 
       //Fonction pour envoyer la requete de connexiion
-      onSubmit(){
+     public onSubmit(){
         const data = {
           'username': this.myForm.get('username')?.value,
           'password': this.myForm.get('password')?.value
-        }
+        };
         this.apiservice.loginUser(data).subscribe(
-          response => {
-            console.log(response);
+          response =>{
+            const access_token = response['access'] //Récupérer le token
+            //Enregistree le token dans le localStorage
+            localStorage.setItem('access_token', access_token);
           },
           error =>{
-            console.log(error);
+            console.log(error)
+            //Gérer l'erreur,par exemple afficher un message à l'utilisateur
           }
         )
+        
       }
+
+     
+      
 }
