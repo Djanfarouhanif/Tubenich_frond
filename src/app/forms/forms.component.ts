@@ -59,13 +59,7 @@ export class FormsComponent {
                 response =>{
                   const access_token = response['access'];
                   //verifier si la connexion a reussi 
-                  if(access_token){
-                    this.route.navigate(['video']);
-                    localStorage.setItem("access_token", access_token)
-                  }
-                  else{
-                    console.log('User not login');
-                  }
+                  localStorage.setItem('access_token', access_token)
                 },
                 error =>{
                   console.log(error);

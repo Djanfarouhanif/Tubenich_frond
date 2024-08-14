@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ApiService } from '../api.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -14,7 +15,7 @@ export class LoginComponent {
 
     myForm!: FormGroup
 
-      constructor(private apiservice: ApiService){
+      constructor(private apiservice: ApiService, private router:Router){
           this.myForm = new FormGroup({
             username : new FormControl('', Validators.required),
             password : new FormControl('', Validators.required)
@@ -31,7 +32,13 @@ export class LoginComponent {
           response =>{
             const access_token = response['access'] //Récupérer le token
             //Enregistree le token dans le localStorage
-            localStorage.setItem('access_token', access_token);
+            if(localStorage.getItem('access_token') === 'access_token'){
+              this.router.navigate(['video'])
+            }else{
+              localStorage.setItem('access_token', access_token);
+              this.router.navigate(['videos'])
+            }
+            
           },
           error =>{
             console.log(error)
