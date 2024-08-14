@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { ApiService } from '../api.service';
 
 import { Router } from '@angular/router'
@@ -36,9 +36,12 @@ export class FormsComponent {
         if(this.myForm.valid){
         //recuper  les valeur envoyer par l'utilisateur
           const formValut = {
-            'username': this.myForm.get('username')?.value,
-            'email': this.myForm.get('email')?.value,
-            'password': this.myForm.get('password')?.value,
+            'user': {
+                'username': this.myForm.get('username')?.value,
+                'email': this.myForm.get('email')?.value,
+                'password': this.myForm.get('password')?.value
+            },
+            
             'langage': this.myForm.get('choise')?.value
   
           };

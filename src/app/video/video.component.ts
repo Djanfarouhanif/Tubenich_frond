@@ -1,15 +1,31 @@
 import { Component } from '@angular/core';
 import { ProfileComponent } from '../profile/profile.component';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
+
+
 @Component({
   selector: 'app-video',
   standalone: true,
   imports: [ProfileComponent],
   templateUrl: './video.component.html',
-  styleUrl: './video.component.css'
+  styleUrl: './video.component.css',
+  providers: [ApiService]
 })
 export class VideoComponent {
-    constructor(private router:Router){}
+
+    constructor(private router:Router, private apiservice: ApiService){
+
+      // recuper les video enregistre dans db
+      this.apiservice.getData().subscribe(
+        response =>{
+          console.log(response)
+        },
+        error =>{
+          console.log(error)
+        }
+      );
+    }
 
     // Fonction pour activer une autre video
     video(){

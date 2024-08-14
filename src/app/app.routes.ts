@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { AccuilleComponent } from './accuille/accuille.component';
 import { FormsComponent } from './forms/forms.component';
-
 import { LoginComponent } from './login/login.component';
 import { VideosComponent } from './videos/videos.component';
 import { VideoComponent } from './video/video.component';
