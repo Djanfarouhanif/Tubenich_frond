@@ -28,6 +28,8 @@ export class FormsComponent {
           checkbox : new FormControl('', Validators.required)
       });
     }
+
+    
     //fonction pour la validation du formular une foie clicker
     onSubmit(){
       //verifier si password1 et password son compatible
