@@ -3,19 +3,20 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { ApiService } from '../api.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { VideosComponent } from '../videos/videos.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule],
+  imports: [NavbarComponent, ReactiveFormsModule, VideosComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [ApiService]
+  providers: [ApiService, VideosComponent]
 })
 export class LoginComponent {
 
     myForm!: FormGroup
-
-      constructor(private apiservice: ApiService, private router:Router){
+    userToken:any
+      constructor(private apiservice: ApiService, private router:Router, private videoscomponent: VideosComponent){
           this.myForm = new FormGroup({
             username : new FormControl('', Validators.required),
             password : new FormControl('', Validators.required)
@@ -24,20 +25,26 @@ export class LoginComponent {
 
       //Fonction pour envoyer la requete de connexiion
      public onSubmit(){
+      const username = this.myForm.get('username')?.value;
+      const password = this.myForm.get('passowrd')?.value
         const data = {
-          'username': this.myForm.get('username')?.value,
-          'password': this.myForm.get('password')?.value
+          'username': username,
+          'password': password
         };
         this.apiservice.loginUser(data).subscribe(
           response =>{
             const access_token = response['access'] //Récupérer le token
             //Enregistree le token dans le localStorage
-            if(localStorage.getItem(`access_token_${this.myForm.get('username')?.value}`)){
-              console.log('reussi avec succec');
+            this.userToken = `access_token_${username}`
+            if(localStorage.getItem(this.userToken)){
               this.router.navigate(['videos'])
+              //GET OTHER YOUTUBE DATA
+              this.videoscomponent.getVideos(this.userToken)
             }else{
-              localStorage.setItem(`access_token_${this.myForm.get('username')?.value}`, access_token);
+              console.log('enregistres');
+              localStorage.setItem(this.userToken, access_token);
               this.router.navigate(['videos']);
+              this.videoscomponent.getVideos(this.userToken)
               console.log('enregistres');
             }
             

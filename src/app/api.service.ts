@@ -29,7 +29,7 @@ export class ApiService {
     return this.http.post(this.apiUrl[1], data,{headers})
   }
 //Recuperer les donners 
-  getData(token:string): Observable<any>{
+  getData(token:any): Observable<any>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}` //Utilisation du token 
