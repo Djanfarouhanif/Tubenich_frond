@@ -36,7 +36,7 @@ export class FormsComponent {
       if( this.myForm.get('password1')?.value === this.myForm.get('password')?.value){
         //en suit verifier que forms est valide ou pas
         if(this.myForm.valid){
-        //recuper  les valeur envoyer par l'utilisateur
+        //  les Donner  enregistre par l'utilisateur
           const formValut = {
             'user': {
                 'username': this.myForm.get('username')?.value,
@@ -52,14 +52,18 @@ export class FormsComponent {
             response => {
               //recuper le token et login user et l'envoyer a la page d'accuille
               const data = {
-                'username': this.myForm.get('username'),
-                'password': this.myForm.get('password')
+                'username': this.myForm.get('username')?.value,
+                'password': this.myForm.get('password')?.value
               }
+              this.route.navigate(['videos'])
+              console.log(response)
+              //connexion de nouveau utilisateur
               this.apiservice.loginUser(data).subscribe(
                 response =>{
+                  console.log(response);
                   const access_token = response['access'];
                   //verifier si la connexion a reussi 
-                  localStorage.setItem('access_token', access_token)
+                  localStorage.setItem(`access_token_${this.myForm.get('username')?.value}`, access_token)
                 },
                 error =>{
                   console.log(error);

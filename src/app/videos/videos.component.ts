@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfileComponent } from '../profile/profile.component';
 import { FooterComponent } from '../footer/footer.component';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 

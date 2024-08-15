@@ -32,11 +32,13 @@ export class LoginComponent {
           response =>{
             const access_token = response['access'] //Récupérer le token
             //Enregistree le token dans le localStorage
-            if(localStorage.getItem('access_token') === 'access_token'){
-              this.router.navigate(['video'])
-            }else{
-              localStorage.setItem('access_token', access_token);
+            if(localStorage.getItem(`access_token_${this.myForm.get('username')?.value}`)){
+              console.log('reussi avec succec');
               this.router.navigate(['videos'])
+            }else{
+              localStorage.setItem(`access_token_${this.myForm.get('username')?.value}`, access_token);
+              this.router.navigate(['videos']);
+              console.log('enregistres');
             }
             
           },

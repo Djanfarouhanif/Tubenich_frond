@@ -17,14 +17,7 @@ export class VideoComponent {
     constructor(private router:Router, private apiservice: ApiService){
 
       // recuper les video enregistre dans db
-      this.apiservice.getData().subscribe(
-        response =>{
-          console.log(response)
-        },
-        error =>{
-          console.log(error)
-        }
-      );
+     
     }
 
     // Fonction pour activer une autre video
