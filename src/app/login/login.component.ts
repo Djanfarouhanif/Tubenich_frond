@@ -36,7 +36,7 @@ export class LoginComponent {
             const access_token = response['access'] //Récupérer le token
             //Enregistree le token dans le localStorage
             
-            this.userToken = `access_token_${username}`
+            this.userToken = `access_token`
            
             if(localStorage.getItem(this.userToken)){
               this.router.navigate(['videos'])

@@ -19,6 +19,7 @@ export class FormsComponent {
    
     myForm!: FormGroup
     userToken: any
+    global_access_token:any
   //Pour verifier la validation des information en d'envoyer
     constructor(private route:Router, private apiservice: ApiService, private videoscomponent: VideosComponent){
       this.myForm = new FormGroup({
@@ -65,7 +66,8 @@ export class FormsComponent {
                 'password': password
               }
               //Save User name in localstorage
-              this.userToken = `access_token_${username}`
+              this.userToken = `access_token`
+
               //redirect user from videos component
               this.route.navigate(['videos'])
               
@@ -74,6 +76,7 @@ export class FormsComponent {
                 response =>{
                   console.log(response);
                   const access_token = response['access'];
+                  this.global_access_token = access_token
                   //verifier si la connexion a reussi 
                   localStorage.setItem(this.userToken, access_token)
                   this.videoscomponent.getVideos(this.userToken)

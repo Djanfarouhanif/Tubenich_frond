@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 
-
 @Component({
   selector: 'app-videos',
   standalone: true,
@@ -16,7 +15,7 @@ import { ApiService } from '../api.service';
 })
 export class VideosComponent {
     
-
+    thaimnail = []
 
   constructor(private router:Router, private apiservice: ApiService){
     
@@ -26,7 +25,7 @@ export class VideosComponent {
   public getVideos(tokenName: any){
     //get access_token and username in localStorage
     
-    console.log(tokenName);
+    
     //get the data of youtube video
     const token = localStorage.getItem(tokenName)
     this.apiservice.getData(token).subscribe(
