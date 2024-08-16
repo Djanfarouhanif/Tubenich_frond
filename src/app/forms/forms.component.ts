@@ -68,7 +68,7 @@ export class FormsComponent {
               this.userToken = `access_token_${username}`
               //redirect user from videos component
               this.route.navigate(['videos'])
-              console.log(response)
+              
               //connexion de nouveau utilisateur
               this.apiservice.loginUser(data).subscribe(
                 response =>{

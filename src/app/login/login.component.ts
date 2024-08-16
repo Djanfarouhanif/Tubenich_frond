@@ -26,7 +26,7 @@ export class LoginComponent {
       //Fonction pour envoyer la requete de connexiion
      public onSubmit(){
       const username = this.myForm.get('username')?.value;
-      const password = this.myForm.get('passowrd')?.value
+      const password = this.myForm.get('password')?.value
         const data = {
           'username': username,
           'password': password
@@ -35,17 +35,19 @@ export class LoginComponent {
           response =>{
             const access_token = response['access'] //Récupérer le token
             //Enregistree le token dans le localStorage
+            
             this.userToken = `access_token_${username}`
+           
             if(localStorage.getItem(this.userToken)){
               this.router.navigate(['videos'])
               //GET OTHER YOUTUBE DATA
               this.videoscomponent.getVideos(this.userToken)
             }else{
-              console.log('enregistres');
+             
               localStorage.setItem(this.userToken, access_token);
               this.router.navigate(['videos']);
               this.videoscomponent.getVideos(this.userToken)
-              console.log('enregistres');
+              
             }
             
           },

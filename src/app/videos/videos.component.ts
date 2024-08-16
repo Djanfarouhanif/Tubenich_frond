@@ -37,10 +37,8 @@ export class VideosComponent {
         console.log(error);
       }
     )
-  }
+  };
 
   // Fonction pour rediriger ver une video en utilisant son id
-  public video(){
-    this.router.navigate(['/video'])
-  }
+  
 }
