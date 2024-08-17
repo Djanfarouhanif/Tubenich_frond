@@ -10,7 +10,7 @@ import { VideosComponent } from '../videos/videos.component';
   imports: [NavbarComponent, ReactiveFormsModule, VideosComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [ApiService, VideosComponent]
+  providers: [ApiService]
 })
 export class LoginComponent {
 

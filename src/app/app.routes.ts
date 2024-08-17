@@ -11,5 +11,5 @@ export const routes: Routes = [
     {path: 'forms', component: FormsComponent},
     {path: 'login', component: LoginComponent},
     {path: 'videos', component: VideosComponent},
-    {path: 'video', component: VideoComponent}
+    {path: 'video/:id', component: VideoComponent}
 ];

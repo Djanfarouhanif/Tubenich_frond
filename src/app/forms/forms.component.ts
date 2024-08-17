@@ -13,7 +13,7 @@ import { VideosComponent } from '../videos/videos.component';
   imports: [NavbarComponent, ReactiveFormsModule, HttpClientModule, VideosComponent ],
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.css',
-  providers: [ApiService, VideosComponent]
+  providers: [ApiService]
 })
 export class FormsComponent {
    

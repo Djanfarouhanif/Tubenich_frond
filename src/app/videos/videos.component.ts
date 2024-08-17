@@ -3,19 +3,20 @@ import { ProfileComponent } from '../profile/profile.component';
 import { FooterComponent } from '../footer/footer.component';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-videos',
   standalone: true,
-  imports: [ProfileComponent, FooterComponent],
+  imports: [ProfileComponent, FooterComponent, CommonModule],
   templateUrl: './videos.component.html',
   styleUrl: './videos.component.css',
   providers: [ApiService]
 })
 export class VideosComponent {
+    videos : any[] = []
     
-    thaimnail = []
 
   constructor(private router:Router, private apiservice: ApiService){
     
@@ -30,7 +31,8 @@ export class VideosComponent {
     const token = localStorage.getItem(tokenName)
     this.apiservice.getData(token).subscribe(
       response =>{
-        console.log(response);
+        this.videos = response
+        console.log(this.videos);
       },
       error =>{
         console.log(error);
@@ -39,5 +41,8 @@ export class VideosComponent {
   };
 
   // Fonction pour rediriger ver une video en utilisant son id
+  goToVideo(VideoId: any){
+    this.router.navigate([`/video`, VideoId])
+  }
   
 }
