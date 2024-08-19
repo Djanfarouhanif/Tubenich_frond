@@ -7,7 +7,7 @@ import { VideosComponent } from '../videos/videos.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, VideosComponent],
+  imports: [NavbarComponent, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   providers: [ApiService]
@@ -16,7 +16,7 @@ export class LoginComponent {
 
     myForm!: FormGroup
     userToken:any
-      constructor(private apiservice: ApiService, private router:Router, private videoscomponent: VideosComponent){
+      constructor(private apiservice: ApiService, private router:Router){
           this.myForm = new FormGroup({
             username : new FormControl('', Validators.required),
             password : new FormControl('', Validators.required)
@@ -41,12 +41,12 @@ export class LoginComponent {
             if(localStorage.getItem(this.userToken)){
               this.router.navigate(['videos'])
               //GET OTHER YOUTUBE DATA
-              this.videoscomponent.getVideos(this.userToken)
+              
             }else{
              
               localStorage.setItem(this.userToken, access_token);
               this.router.navigate(['videos']);
-              this.videoscomponent.getVideos(this.userToken)
+              
               
             }
             

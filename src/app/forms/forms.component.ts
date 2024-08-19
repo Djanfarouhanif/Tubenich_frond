@@ -5,12 +5,12 @@ import { HttpClientModule } from '@angular/common/http'
 import { ApiService } from '../api.service';
 
 import { Router } from '@angular/router'
-import { VideosComponent } from '../videos/videos.component';
+
 
 @Component({
   selector: 'app-forms',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, HttpClientModule, VideosComponent ],
+  imports: [NavbarComponent, ReactiveFormsModule, HttpClientModule ],
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.css',
   providers: [ApiService]
@@ -21,7 +21,7 @@ export class FormsComponent {
     userToken: any
     global_access_token:any
   //Pour verifier la validation des information en d'envoyer
-    constructor(private route:Router, private apiservice: ApiService, private videoscomponent:VideosComponent){
+    constructor(private route:Router, private apiservice: ApiService){
       this.myForm = new FormGroup({
           username: new FormControl('', Validators.required),
           email: new FormControl('', [Validators.email, Validators.required]),
@@ -79,7 +79,7 @@ export class FormsComponent {
                   this.global_access_token = access_token
                   //verifier si la connexion a reussi 
                   localStorage.setItem(this.userToken, access_token)
-                  this.videoscomponent.getVideos(this.userToken)
+                  
                 },
                 error =>{
                   console.log(error);
