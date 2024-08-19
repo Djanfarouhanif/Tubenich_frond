@@ -21,7 +21,7 @@ export class FormsComponent {
     userToken: any
     global_access_token:any
   //Pour verifier la validation des information en d'envoyer
-    constructor(private route:Router, private apiservice: ApiService, private videoscomponent: VideosComponent){
+    constructor(private route:Router, private apiservice: ApiService, private videoscomponent:VideosComponent){
       this.myForm = new FormGroup({
           username: new FormControl('', Validators.required),
           email: new FormControl('', [Validators.email, Validators.required]),
