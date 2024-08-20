@@ -11,9 +11,7 @@
                 <div>
                     <div class=" m-3 cursor-pointer" (click)="goToVideo(video.videoId)"> 
                         <div>
-                            <img [src]="video.thumbnails?.default?.url" alt="" class="rounded-3xl">
-                            
-                            
+                            <img [src]="video.thumbnails" alt="" class="rounded-3xl">
                         </div>
                         <div class="my-3 pl-4">
                             <h1 class="text-gray-400  text-base font-bold">{{video.title}}</h1>

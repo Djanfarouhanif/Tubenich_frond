@@ -33,9 +33,10 @@ export class LoginComponent {
         };
         this.apiservice.loginUser(data).subscribe(
           response =>{
-            const access_token = response['access'] //Récupérer le token
+            const access_token = response['access']; //Récupérer le token
+            const refresh = response['refresh']; //Recuperer refresh token
             //Enregistree le token dans le localStorage
-            
+            C
             this.userToken = `access_token`
            
             if(localStorage.getItem(this.userToken)){

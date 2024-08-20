@@ -18,7 +18,8 @@ import { isPlatformBrowser } from '@angular/common';
   
 })
 export class VideosComponent implements OnInit {
-    videos : any[] = []
+    videos : any[] = [];
+    private tokenKey = "access_token"; //Nom du token dans localStorage
     
 
   constructor(private router:Router, private apiservice: ApiService, @Inject(PLATFORM_ID) private platformId:object ){
@@ -27,26 +28,31 @@ export class VideosComponent implements OnInit {
 
   ngOnInit(): void {
     if(isPlatformBrowser(this.platformId)){
-      this.getVideos('access_token')
+      this.getVideos()
     }
     
   }
-  public getVideos(tokenName: any){
+  public getVideos(){ 
     //get access_token and username in localStorage
     
-    
+    const token = localStorage.getItem(this.tokenKey)
     //get the data of youtube video
-    const token = localStorage.getItem(tokenName);
-    console.log(token);
-    this.apiservice.getData(token).subscribe(
-      response =>{
-        this.videos = response
-        console.log(this.videos);
-      },
-      error =>{
-        console.log(error);
-      }
-    )
+    if(token){
+      console.log(token);
+      this.apiservice.getData(token).subscribe(
+        response =>{
+          this.videos = response
+          console.log(this.videos);
+        },
+        error =>{
+          console.log(error);
+        }
+      )
+    }else{
+      console.log("Jeton non trouver");
+    }
+
+   
   };
 
   // Fonction pour rediriger ver une video en utilisant son id
