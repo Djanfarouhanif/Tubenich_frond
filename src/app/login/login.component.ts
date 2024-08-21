@@ -33,23 +33,15 @@ export class LoginComponent {
         };
         this.apiservice.loginUser(data).subscribe(
           response =>{
-            const access_token = response['access']; //Récupérer le token
-            const refresh_token = response['refresh']; //Recuperer refresh token
+            const access_token = response['access']; // Récupérer le token
+            const refresh_token = response['refresh']; // Recuperer refresh token
             //Enregistree le token dans le localStorage
             
             this.userToken = `access_token`
             localStorage.setItem('refresh_token', refresh_token)
-            if(localStorage.getItem(this.userToken)){
-              this.router.navigate(['videos'])
-              //GET OTHER YOUTUBE DATA
-              
-            }else{
-             
-              localStorage.setItem(this.userToken, access_token);
-              this.router.navigate(['videos']);
-              
-              
-            }
+            localStorage.setItem('access_token', access_token)
+            this.router.navigate(['videos'])
+            
             
           },
           error =>{

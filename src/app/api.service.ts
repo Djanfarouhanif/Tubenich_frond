@@ -46,6 +46,7 @@ export class ApiService {
     return this.http.get(this.apiUrl[2], {headers}).pipe(
       catchError(error =>{
         if (error.status === 401){
+          console.log("token  finini")
           return this.refreshAccessToken().pipe(
             switchMap((response:any) =>{
               const new_access_token = response['access'];
@@ -58,7 +59,8 @@ export class ApiService {
             })
           );
         }else {
-          return throwError
+          console.log('pas sa')
+          return throwError(error)
         }
       })
     )
