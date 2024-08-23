@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfileComponent } from '../profile/profile.component';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -12,13 +14,31 @@ import { ApiService } from '../api.service';
   styleUrl: './video.component.css',
   providers: [ApiService]
 })
-export class VideoComponent {
+export class VideoComponent implements OnInit{
+    videoId: string | null = '';
+    title: string | null = "";
+    constructor(private router:Router, private apiservice: ApiService, private route:ActivatedRoute ){}
 
-    constructor(private router:Router, private apiservice: ApiService){
+  ngOnInit(){
+    //recuper l'id du video 
+    this.videoId = this.route.snapshot.paramMap.get('id');
+    console.log('videoId', this.videoId);
 
-      // recuper les video enregistre dans db
-     
+    if(this.videoId){
+      this.apiservice.getVideo(this.videoId).subscribe(
+        response =>{
+          
+          this.title = response['data']['title']
+        }, 
+        error =>{
+          console.log(error)
+        }
+      )
+    }else{
+      console.log('Video not found');
     }
+   
+  }
 
     // Fonction pour activer une autre video
     video(){

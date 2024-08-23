@@ -33,8 +33,8 @@ export class VideosComponent implements OnInit {
     
   }
   public getVideos(){ 
-    //get access_token and username in localStorage
     
+    //get access_token and username in localStorage
     const token = localStorage.getItem(this.tokenKey)
     //get the data of youtube video
     if(token){

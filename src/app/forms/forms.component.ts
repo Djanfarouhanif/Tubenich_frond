@@ -20,6 +20,7 @@ export class FormsComponent {
     myForm!: FormGroup
     userToken: any
     global_access_token:any
+    refreshToken:any
   //Pour verifier la validation des information en d'envoyer
     constructor(private route:Router, private apiservice: ApiService){
       this.myForm = new FormGroup({
@@ -66,25 +67,52 @@ export class FormsComponent {
                 'password': password
               }
               //Save User name in localstorage
-              this.userToken = `access_token`
+              this.userToken = `access_token`;
+              this.refreshToken = 'refresh_token'
+              if(localStorage.getItem(this.userToken)){
+                //suprimer l'accien token
+                  localStorage.removeItem(this.userToken);
+                  localStorage.removeItem(this.refreshToken);
+                   //redirect user from videos component
+                  
+                 //connexion de nouveau utilisateur
+                  this.apiservice.loginUser(data).subscribe(
+                    response =>{
+                    console.log(response);
+                    const access_token = response['access'];
+                    const refresh_token = response['refresh'];
 
-              //redirect user from videos component
-              this.route.navigate(['videos'])
+                    //verifier si la connexion a reussi 
+                    localStorage.setItem(this.userToken, access_token)
+                    localStorage.setItem(this.refreshToken, refresh_token)
+                    this.route.navigate(['videos'])
+                    
+                  },
+                  error =>{
+                    console.log(error);
+                  }
+                );
+                  
+              }else{
               
               //connexion de nouveau utilisateur
               this.apiservice.loginUser(data).subscribe(
                 response =>{
                   console.log(response);
                   const access_token = response['access'];
-                  this.global_access_token = access_token
+                  const refresh_token = response['refresh'];
                   //verifier si la connexion a reussi 
-                  localStorage.setItem(this.userToken, access_token)
+                  localStorage.setItem(this.userToken, access_token);
+                  localStorage.setItem(this.refreshToken, refresh_token);
+                  this.route.navigate(['videos']);
                   
                 },
                 error =>{
                   console.log(error);
                 }
-              )
+              );
+              };
+             
             },
             error => {
               console.log(error);
@@ -102,6 +130,6 @@ export class FormsComponent {
       
     };
 
-    //Fonction pour envoyer les donner via l'api
+    
       
 }

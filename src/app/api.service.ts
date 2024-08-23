@@ -10,7 +10,8 @@ export class ApiService {
   private apiUrl =[ 'http://127.0.0.1:8000/register/',
                     'http://127.0.0.1:8000/login/',
                      'http://127.0.0.1:8000/',
-                     'http://127.0.0.1:8000/api/token/refresh/'
+                     'http://127.0.0.1:8000/api/token/refresh/',
+                     'http://127.0.0.1:8000/video/'
                     ]
   
 
@@ -46,7 +47,6 @@ export class ApiService {
     return this.http.get(this.apiUrl[2], {headers}).pipe(
       catchError(error =>{
         if (error.status === 401){
-          console.log("token  finini")
           return this.refreshAccessToken().pipe(
             switchMap((response:any) =>{
               const new_access_token = response['access'];
@@ -62,6 +62,23 @@ export class ApiService {
           console.log('pas sa')
           return throwError(error)
         }
+      })
+    )
+  }
+
+  //Fonction pour recuper une vidoe a l'aide de son id
+  getVideo(id:any):Observable<any>{
+    //En têtê du requet pour envoyer de donner
+    const headers = new HttpHeaders({
+        "Content-Type": 'application/json'
+    });
+    const data = {
+      "videoId": id
+    }
+    return this.http.post(this.apiUrl[4],data ,{headers}).pipe(
+      catchError( error=>{
+        console.error(error);
+        return throwError(error)
       })
     )
   }
