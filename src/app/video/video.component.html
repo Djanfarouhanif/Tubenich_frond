@@ -7,9 +7,15 @@
             <div class="w-vid con:w-full">
                 <div class="flex items-center justify-center">
                     <div>
-                        <video class="rounded-xl"  controls>
-                            <source src="../../assets/media/1. Introduction.mp4" type="video/mp4">
-                        </video>
+                        <iframe class="rounded-xl" width="560" height="315" 
+                        src="https://www.youtube.com/embed/{{videoId}}" 
+                        title="Youtube vidoe player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        >
+
+                        </iframe>
                         <div class="mt-4">
                             <h1 class="font-bold text-xl text-gray-400">{{title}}</h1>
                         </div>
