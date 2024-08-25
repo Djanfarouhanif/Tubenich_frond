@@ -27,11 +27,14 @@ export class VideosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Verifier si l'utilisateur est sur un navigateur
     if(isPlatformBrowser(this.platformId)){
       this.getVideos()
     }
     
   }
+
+
   public getVideos(){ 
     
     //get access_token and username in localStorage
@@ -42,7 +45,7 @@ export class VideosComponent implements OnInit {
       this.apiservice.getData(token).subscribe(
         response =>{
           this.videos = response
-          console.log(this.videos);
+          
         },
         error =>{
           console.log(error);
