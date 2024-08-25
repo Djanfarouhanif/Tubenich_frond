@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common'
+import { isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-video',
   standalone: true,
-  imports: [ProfileComponent],
+  imports: [ProfileComponent, CommonModule],
   templateUrl: './video.component.html',
   styleUrl: './video.component.css',
   providers: [ApiService]
