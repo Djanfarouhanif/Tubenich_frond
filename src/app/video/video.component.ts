@@ -55,14 +55,16 @@ export class VideoComponent implements OnInit{
 
   //Afficher les vidoes de suggestion sur la page de lecture video
   getVideo(){
+    console.log('hiii')
     //get token which is sauve in localstorage
     const token = localStorage.getItem(this.accessToken)
     if(token){
       this.apiservice.getData(token).subscribe(
         response =>{
-          this.video = response;
+          this.videos = response;
+          console.log(response);
         }, error =>{
-          console.log(error);
+          console.log(error)
         }
       );
     }else{
