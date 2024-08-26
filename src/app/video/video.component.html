@@ -1,54 +1,57 @@
 <div class="p-10">
-    <app-profile></app-profile>
+  <app-profile></app-profile>
 
-    <div class="h-screen pb-20">
-        <div class="flex flex-row pt-10 max-h-ma con:flex-col  con:gap-20">
-            <!--Vidoe -->
-            <div class="w-vid con:w-full">
-                <div class="flex items-center justify-center">
-                    <div>
-                        <iframe class="rounded-xl" width="560" height="315" 
-                        [src] = "videoUrl"
-                        title="Youtube vidoe player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
-                        >
-
-                        </iframe>
-                        <div class="mt-4">
-                            <h1 class="font-bold text-xl text-gray-400">{{title}}</h1>
-                        </div>
-                    </div>
-                    
-                </div>
+  <div class="h-screen pb-20">
+    <div class="flex flex-row pt-10 max-h-ma con:flex-col con:gap-20">
+      <!--Vidoe -->
+      <div class="w-vid con:w-full">
+        <div class="flex items-center justify-center">
+          <div>
+            <iframe
+              class="rounded-xl"
+              width="560"
+              height="315"
+              [src]="videoUrl"
+              title="Youtube vidoe player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            >
+            </iframe>
+            <div class="mt-4">
+              <h1 class="font-bold text-xl text-gray-400">{{ title }}</h1>
             </div>
-            <!--ALL videos-->
-            <div class="w-al ml-16 con:ml-0 con:w-full con:h-400">
-                <div class="grid grid-cols-1  gap-4 overflow-y-auto h-full  shadow-xll rounded-xl p-5  " *ngFor="let video of videos ">    
-
-                        <!--Content zone-->
-                         <div>
-                            <div class="  cursor-pointer flex   w-full items-center"> 
-                                <div class=" w-36 ">
-                                    <img [src]="video.thumbnails" alt="" class="rounded-xl w-full h-full object-center object-cover" >
-                                </div>
-                                <div class="my-3 pl-4 flex-3">
-                                    <h1 class="text-gray-400  text-sm font-bold"> {{video.title}} </h1>
-                                </div>
-                            </div>   
-                        </div>
-                        <!--Con-->
-                         <!--Content zone-->
-                        <!--FF IIIIIIIIIII NNNNNNNNNNNNNN-->
-                </div>
-                
-            </div>
-        
-            
+          </div>
         </div>
+      </div>
+      <!--ALL videos-->
+      <div class="w-al ml-16 con:ml-0 con:w-full con:h-400">
+        <div
+          class="grid grid-cols-1 gap-4 overflow-y-auto h-full shadow-xll rounded-xl p-5"
+          *ngFor="let video of videos"
+        >
+          <!--Content zone-->
+          <div>
+            <div class="cursor-pointer flex w-full items-center">
+              <div class="w-36">
+                <img
+                  [src]="video.thumbnails"
+                  alt=""
+                  class="rounded-xl w-full h-full object-center object-cover"
+                />
+              </div>
+              <div class="my-3 pl-4 flex-3">
+                <h1 class="text-gray-400 text-sm font-bold">
+                  {{ video.title }}
+                </h1>
+              </div>
             </div>
-            
-   
+          </div>
+          <!--Con-->
+          <!--Content zone-->
+          <!--FF IIIIIIIIIII NNNNNNNNNNNNNN-->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
